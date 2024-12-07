@@ -548,11 +548,7 @@ public class UserController
     @GetMapping("viewnutritionistsbypecification")
     public ModelAndView  viewproductsbycategorydemo()
     {
-// 	   	String nspecification = request.getParameter("nspecification");
-       
-//         List<Nutritionist> productlist=adminService.viewallnutritionistsbynspecification(nspecification);
          ModelAndView mv=new ModelAndView("viewnutritionistsbypecification");
-//         mv.addObject("productlist",productlist);
          return mv;
     }
 
@@ -567,5 +563,35 @@ public class UserController
          mv.addObject("nutrilist",nutrilist);
          return mv;
     }
+    
+    
+    
+    
+    
+    @GetMapping("updatenutristatus") 
+    public ModelAndView updatenutristatus()
+    {
+      ModelAndView mv = new ModelAndView();
+      List<Nutritionist> nutrilist = adminService.ViewAllNutritionists();
+      mv.setViewName("updatenutristatus"); //(jsp file)
+      mv.addObject("nutrilist",nutrilist);
+      return mv;
+    }
+    
+    @GetMapping("updatestatus")
+    public String updatestatus(@RequestParam("id") int eid,@RequestParam("status") String status)
+    {
+     adminService.updatenutristatus(status, eid);
+     return "redirect:/updateempstatus";
+      
+    }
+    
+    
+    @GetMapping("meeting")
+    public ModelAndView meeting() {
+	    ModelAndView mv = new ModelAndView();
+	    mv.setViewName("meeting");
+	    return mv;
+	}
 	
 }

@@ -31,4 +31,7 @@ public interface AdminService
 	
 	
 	public List<Nutritionist> viewallnutritionistsbynspecification(String nspecification);
+	
+	
+	public String updatenutristatus(String status, int uid);
 }

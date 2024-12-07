@@ -28,7 +28,6 @@ Nutritionist nutri = (Nutritionist) session.getAttribute("nutri");
             padding: 20px; /* Add padding to ensure content is inside the borders */
         }
 
-        /* Container styling to avoid content touching the border */
         .content-container {
             background-color: white;
             margin: 0 auto;
@@ -38,7 +37,6 @@ Nutritionist nutri = (Nutritionist) session.getAttribute("nutri");
             border-radius: 10px;
         }
 
-        /* Header */
         header {
             display: flex;
             justify-content: flex-start; /* Align items to the left */
@@ -50,7 +48,6 @@ Nutritionist nutri = (Nutritionist) session.getAttribute("nutri");
             border-radius: 10px;
         }
 
-        /* Profile Icon */
         .profile-icon {
             margin-right: 20px;
             cursor: pointer;
@@ -63,7 +60,7 @@ Nutritionist nutri = (Nutritionist) session.getAttribute("nutri");
             object-fit: cover;
         }
 
-      .logo {
+        .logo {
             margin-left: auto; /* Push the logo to the far right */
         }
 
@@ -72,7 +69,6 @@ Nutritionist nutri = (Nutritionist) session.getAttribute("nutri");
             text-align: center;
         }
 
-        /* Profile Dropdown */
         .profile-dropdown {
             position: absolute;
             left: 20px;
@@ -95,7 +91,6 @@ Nutritionist nutri = (Nutritionist) session.getAttribute("nutri");
             color: #0056b3;
         }
 
-        /* Welcome Section */
         .welcome-section {
             text-align: center;
             margin-top: 40px;
@@ -106,21 +101,31 @@ Nutritionist nutri = (Nutritionist) session.getAttribute("nutri");
             color: #0056b3;
         }
         
-               .icon-btn {
-            background-color: #28a745;
-            color: white;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
+
+
 
         .icon-btn:hover {
             background-color: #218838;
         }
         
-               footer {
+        .option-card {
+            text-align: center;
+            margin: 20px auto;
+        }
+
+        .option-card img {
+            width: 150px;
+            height: 150px;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .option-card img:hover {
+            transform: scale(1.1);
+        }
+
+        footer {
             text-align: center;
             padding: 20px 0;
             background-color: #0056b3;
@@ -128,17 +133,28 @@ Nutritionist nutri = (Nutritionist) session.getAttribute("nutri");
             margin-top: 40px;
             border-radius: 10px;
         }
+        .options-section {
+    display: flex;
+    justify-content: center; /* Centers the content */
+    align-items: center;
+    flex-wrap: wrap; /* Allows wrapping if needed on smaller screens */
+    margin-top: 20px;
+}
 
+.option-row {
+    display: flex;
+    gap: 20px; /* Adds spacing between the images */
+}
+        
 </style>
 
 </head>
 <body>
 
-
     <div class="content-container">
         <header>
             <div class="profile-icon" onclick="toggleProfile()">
-                <img src="images\Profile.jpeg" alt="Profile" id="profile-img">
+                <img src="images/user_age.jpg" alt="Users">
             </div>
             <div class="logo">
                 <h1>NutriScout</h1>
@@ -155,23 +171,33 @@ Nutritionist nutri = (Nutritionist) session.getAttribute("nutri");
                 <h2>Welcome, <%= nutri.getNname()%></h2>
             </section>
 
-             <section class="options-section">
-                <!-- Age Selector Field -->
-                <div class="option-card" id="age-card">
-                    <img src="images\user_age.jpg" >
-                    <div class="option-info">
-                        <button class="icon-btn" onclick="window.location.href='viewallusersfornutri';">View all Users</button>
-                    </div>
-                </div>
-                
-                 </section>
+           <section class="options-section">
+    <div class="option-row">
+        <!-- View All Users -->
+        <div class="option-card" id="age-card">
+            <a href="viewallusersfornutri">
+                <img src="images/user_age.jpg" alt="Users">
+            </a>
+            <div class="option-info">
+                <p>View all Users</p>
+            </div>
+        </div>
+
+        <!-- People Image -->
+        <div class="option-card" id="people-card">
+            <a href="meeting.jsp">
+                <img src="images/user_age.jpg" alt="People">
+            </a>
+            <div class="option-info">
+                <p>People</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+
 
         </main>
-
-
-
-        
-
 
     <script>
         // Toggle profile dropdown
@@ -179,9 +205,7 @@ Nutritionist nutri = (Nutritionist) session.getAttribute("nutri");
             const dropdown = document.getElementById('profile-dropdown');
             dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
         }
-
-
     </script>
-    
+
 </body>
 </html>

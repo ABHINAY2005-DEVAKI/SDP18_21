@@ -13,17 +13,16 @@
     <title>Spring Boot Project</title>
 
     <style>
-        /* Apply background image */
         body {
             font-family: Arial, sans-serif;
-            background-image: url('images/teenage_nutritionist.jpg');  /* Ensure the correct image path */
-            background-size: cover;  /* Make the image cover the entire screen */
-            background-position: center;  /* Center the image */
-            background-attachment: fixed;  /* Fix the background while scrolling */
+            background-image: url('images/teenage_nutritionist.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
             margin: 0;
             padding: 0;
-            height: 100vh;  /* Make the body cover the entire viewport height */
-            color: #333;  /* Text color */
+            height: 100vh;
+            color: #333;
         }
 
         h3 {
@@ -50,7 +49,7 @@
             border-collapse: collapse;
             font-size: 16px;
             color: #333;
-            background-color: rgba(255, 255, 255, 0.8);  /* Slight transparency for readability */
+            background-color: rgba(255, 255, 255, 0.8);
             border-radius: 5px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
@@ -75,7 +74,11 @@
             border-radius: 5px;
         }
 
-        /* Style for the Back and Home buttons */
+        .rejected {
+            color: red;
+            font-weight: bold;
+        }
+
         .nav-button {
             position: fixed;
             bottom: 20px;
@@ -96,8 +99,8 @@
         .home-button {
             position: fixed;
             bottom: 20px;
-            right: 20px; /* Adjusted to position at the bottom-right */
-            background-color: #6c757d; /* Same as Back button */
+            right: 20px;
+            background-color: #6c757d;
             color: white;
             padding: 12px 30px;
             border: none;
@@ -109,27 +112,13 @@
         .home-button:hover {
             background-color: #5a6268;
         }
-        
     </style>
 
     <script>
-        function myFunction() {
-            var input, filter, table, tr, td, i, txtValue;
-            input = document.getElementById("myInput");
-            filter = input.value.toUpperCase();
-            table = document.getElementById("myTable");
-            tr = table.getElementsByTagName("tr");
-            for (i = 0; i < tr.length; i++) {
-                td = tr[i].getElementsByTagName("td")[4]; // Column 4 for Specification
-                if (td) {
-                    txtValue = td.textContent || td.innerText;
-                    if (txtValue.toUpperCase().indexOf(filter) > -1) {
-                        tr[i].style.display = "";
-                    } else {
-                        tr[i].style.display = "none";
-                    }
-                }       
-            }
+        function rejectNutritionist(id, element) {
+            const row = element.closest('tr');
+            const statusCell = row.querySelector('td:last-child');
+            statusCell.innerHTML = "<span class='rejected'>You rejected this nutritionist</span>";
         }
     </script>
 
@@ -151,22 +140,27 @@
     <th>Email</th>
     <th>Experience</th>
     <th>Specification</th>
+    <th>Actions</th>
 </tr>
 
-<!-- Corrected iteration to display each nutritionist -->
 <c:forEach items="${nutrilist}" var="product">
 <tr>
-    <td><c:out value="${product.id}" /></td>  <!-- Corrected to use product -->
-    <td><c:out value="${product.nname}" /></td> <!-- Corrected to use product -->
-    <td><c:out value="${product.nemail}" /></td> <!-- Corrected to use product -->
-    <td><c:out value="${product.nexperience}" /></td> <!-- Corrected to use product -->
-    <td><c:out value="${product.nspecification}" /></td> <!-- Corrected to use product -->
+    <td><c:out value="${product.id}" /></td>
+    <td><c:out value="${product.nname}" /></td>
+    <td><c:out value="${product.nemail}" /></td>
+    <td><c:out value="${product.nexperience}" /></td>
+    <td><c:out value="${product.nspecification}" /></td>
+    <td>
+        <!-- SELECT button redirects to meeting.jsp -->
+        <a href='<c:url value="meeting"></c:url>'>SELECT</a> | 
+        <!-- REJECT button changes the status to rejected -->
+        <a href="#" onclick="rejectNutritionist('${product.id}', this)">REJECT</a>
+    </td>
 </tr>
 </c:forEach>
 
 </table>
 
-<!-- Back and Home buttons -->
 <button class="nav-button" onclick="window.location.href='viewnutritionistsbypecification'">Back</button>
 <button class="home-button" onclick="window.location.href='userhome'">Home</button>
 

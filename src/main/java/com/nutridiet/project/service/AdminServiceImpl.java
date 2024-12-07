@@ -92,6 +92,12 @@ public class AdminServiceImpl implements AdminService
 		return adminRepository.viewallnutritionistsbynspecification(nspecification);
 	}
 
+	@Override
+	public String updatenutristatus(String status, int uid) {
+		nutritionistRepository.updatenutristatus(status, uid);
+		 return "Employee Status updated Successfully";
+	}
+
 
 
 
