@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
@@ -13,6 +14,7 @@ import com.nutridiet.project.model.Nutritionist;
 import com.nutridiet.project.model.User;
 import com.nutridiet.project.service.AdminService;
 import com.nutridiet.project.service.NutritionistService;
+import com.nutridiet.project.service.UserService;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
@@ -25,6 +27,9 @@ public class NutritionistController
 	
 	@Autowired
 	private AdminService adminService;
+	
+	@Autowired
+	private UserService userService;
 
 	
 	@GetMapping("nusignup")
@@ -207,9 +212,44 @@ public class NutritionistController
 	      
 	     
 	    }
+	    
+	    
+	    
+	    @GetMapping("/viewUserForm/{userId}")
+	    public ModelAndView viewUserForm(@PathVariable("userId") int userId) {
+	        ModelAndView mv = new ModelAndView("nutriViewForm");
+
+	        // Fetch the user data
+	        User user = userService.displayUserByID(userId);
+	        mv.addObject("user", user);
+
+	        return mv;
+	    }
+
+	    @PostMapping("/submitResponse")
+	    public ModelAndView submitResponse(@RequestParam("response") String response, 
+	                                       @RequestParam("userId") int userId) {
+	        
+	        // Get the user by ID
+	        User user = userService.displayUserByID(userId);
+
+	        // Save the response (assuming a 'response' field in User model)
+	        user.setUresponse(response);
+	        userService.UpdateUserProfile(user);
+
+	        ModelAndView mv = new ModelAndView("nutriHome");
+	        mv.addObject("message", "Response submitted successfully.");
+	        return mv;
+	    }
 
 	
-
+		  @GetMapping("nutriViewForm")
+		  public ModelAndView nutriViewForm()
+		  {
+		    ModelAndView mv = new ModelAndView();
+		    mv.setViewName("nutriViewForm");
+		    return mv;
+		  }
 	
 	
 }

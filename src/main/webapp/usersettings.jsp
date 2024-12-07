@@ -1,4 +1,10 @@
+<%@page import="com.nutridiet.project.model.User"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 
+<% 
+User user = (User) session.getAttribute("user");
+%>	
 <!DOCTYPE html>
 <html>
 <head>
@@ -97,13 +103,13 @@
 
   </h4>
   
-    <h3 style="text-align: center;"><u>Update Employee Profile</u></h3>
+    <h3 style="text-align: center;"><u>Update User Profile</u></h3>
     <div class="form-container">
         <form method="post" action="updateuserprofile">
             <table>
                 <tr>
                     <td><label for="id">User ID</label></td>
-                    <td><input type="number" id="id" name="id"  <%-- value="<%= us.getId() %>" --%> required/></td>
+                    <td><input type="hidden" id="id" name="id"  <%-- value="<%= us.getId() %>" --%> /></td>
                 </tr>
                <tr>
                     <td><label for="uemail">User Email</label></td>

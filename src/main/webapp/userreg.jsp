@@ -180,21 +180,37 @@
                         <td><input type="password" id="upassword" name="upassword" required placeholder="Create a password"/></td>
                     </tr>
                     <tr>
-                        <td><label for="ucontact">Enter Contact</label></td>
-                        <td><input type="number" id="ucontact" name="ucontact" required placeholder="Enter Your Contact No"/></td>
-                    </tr>
+ 					    <td><label for="ucontact">Enter Contact</label></td>
+    					<td>
+        				<input type="text" id="ucontact" name="ucontact" required 
+               					placeholder="Enter Your Contact No" 
+               						pattern="^[6-9][0-9]{9}$" 
+               						title="Contact number must start with 6, 7, 8, or 9 and contain exactly 10 digits."/>
+    				</td>
+					</tr>
+
                     <tr>
-                        <td><label>Select Body Type</label></td>
-                        <td>
-                            <select id="ubodytype" name="ubodytype" required>
-                                <option value="">---select---</option>
-                                <option value="Girl_Athletics">Girl Athletics</option>
-                                <option value="Girl_HourGlass">Girl HourGlass</option>
-                                <option value="M_Ectomorph">M Ectomorph</option>
-                                <!-- Add more options as needed -->
-                            </select>
-                        </td>
-                    </tr>
+                    <td><label>Select Body Type</label></td>
+                    <td>
+                        <select id="ubodytype" name="ubodytype" required>
+                        	<option value="">---select---</option>
+                            <option value="Girl_Athletics">Girl_Athletics</option>
+                            <option value="Girl_HourGlass">Girl_HourGlass</option>
+                            <option value="Girl_InvertedTriangle">Girl_InvertedTriangle</option>
+                            <option value="Girl_Rectangle">Girl_Rectangle</option>
+                            <option value="Girl_Round">Girl_Round</option>
+                            <option value="Girl_Ectomorph">Girl_Ectomorph</option>
+                            <option value="Girl_Endomorph">Girl_Endomorph</option>
+                            <option value="Girl_Mesomorph">Girl_Mesomorph</option>
+                            <option value="M_Ectomorph(12-20)">M_Ectomorph(12-20)</option>
+                            <option value="M_Endomorph(12-20)">M_Endomorph(12-20)</option>
+                            <option value="M_Mesomorph(12-20)">M_Mesomorph(12-20)</option>
+                            <option value="M_Ectomorph(20-45)">M_Ectomorph(20-45)</option>
+                            <option value="M_Endomorph(20-45)">M_Endomorph(20-45)</option>
+                            <option value="M_Mesomorph(20-45)">M_Mesomorph(20-45)</option>
+                        </select>
+                    </td>
+                </tr>
                     <tr>
                         <td colspan="2">
                             <div class="button-container">

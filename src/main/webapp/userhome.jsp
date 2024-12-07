@@ -3,7 +3,9 @@
     pageEncoding="UTF-8"%>
 
 <% 
+
 User user = (User) session.getAttribute("user");
+session.setAttribute("user", user);
 %>
 <%-- <%
 User user = (User) session.getAttribute("user");

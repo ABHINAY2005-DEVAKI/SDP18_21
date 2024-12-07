@@ -118,7 +118,7 @@ Nutritionist nutri = (Nutritionist) session.getAttribute("nutri");
             <table>
                 <tr>
                     <td><label for="id">Nutritionist ID</label></td>
-                    <td><input type="number" id="id" name="id" required/></td>
+                    <td><input type="hidden" id="id" name="id" /></td>
                 </tr>
                 <tr>
                     <td><label for="nemail">Email</label></td>

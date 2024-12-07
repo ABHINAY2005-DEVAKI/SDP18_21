@@ -15,13 +15,19 @@ import jakarta.transaction.Transactional;
 @Repository
 public interface UserRepository extends JpaRepository<User, Integer>
 {
-	@Query("select u from User u where u.uemail=?1 and u.upassword=?2")
-	public User checkemplogin(String email,String pwd);	
-	
-	@Query("update User u set u.uage=?1 where u.id=?2")
-	@Modifying
-	@Transactional 
-	public int updateUserProfile(String age,int eid);
+
+	    @Query("select u from User u where u.uemail=?1 and u.upassword=?2")
+	    public User checkemplogin(String email, String pwd);  
+
+	    @Query("update User u set u.uage=?1 where u.id=?2")
+	    @Modifying
+	    @Transactional
+	    public int updateUserProfile(String age, int eid);
+
+	    @Query("update User u set u.uresponse=?1 where u.id=?2")
+	    @Modifying
+	    @Transactional
+	    public int updateUserResponse(String response, int uid);
 	
 
 

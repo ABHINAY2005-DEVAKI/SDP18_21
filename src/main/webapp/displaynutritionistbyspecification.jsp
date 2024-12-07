@@ -114,13 +114,7 @@
         }
     </style>
 
-    <script>
-        function rejectNutritionist(id, element) {
-            const row = element.closest('tr');
-            const statusCell = row.querySelector('td:last-child');
-            statusCell.innerHTML = "<span class='rejected'>You rejected this nutritionist</span>";
-        }
-    </script>
+    
 
 </head>
 
@@ -130,7 +124,7 @@
 
 <br>
 
-<input type="text" id="myInput" onkeyup="myFunction()" placeholder="Enter Specification Name">
+
 
 <table align="center" border="2" id="myTable">
 
@@ -152,7 +146,7 @@
     <td><c:out value="${product.nspecification}" /></td>
     <td>
         <!-- SELECT button redirects to meeting.jsp -->
-        <a href='<c:url value="meeting"></c:url>'>SELECT</a> | 
+        <a href='<c:url value="userform"></c:url>'>SELECT</a> | 
         <!-- REJECT button changes the status to rejected -->
         <a href="#" onclick="rejectNutritionist('${product.id}', this)">REJECT</a>
     </td>

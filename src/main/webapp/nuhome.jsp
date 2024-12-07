@@ -185,7 +185,7 @@ Nutritionist nutri = (Nutritionist) session.getAttribute("nutri");
 
         <!-- People Image -->
         <div class="option-card" id="people-card">
-            <a href="meeting.jsp">
+            <a href="nutriViewForm">
                 <img src="images/user_age.jpg" alt="People">
             </a>
             <div class="option-info">

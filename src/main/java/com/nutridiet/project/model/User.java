@@ -31,13 +31,18 @@ public class User
 	String ucontact;
 	@Column(name = "ubodytype",nullable = false)
 	String ubodytype;
+	@Column(name = "uresponse")
+	String uresponse;
+	@Column(name = "uquery")
+	String uquery;
+	
 	
 	
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", uemail=" + uemail + ", uusername=" + uusername + ", upassword=" + upassword
 				+ ", uage=" + uage + ", ugender=" + ugender + ", urole=" + urole + ", ucontact=" + ucontact
-				+ ", ubodytype=" + ubodytype + "]";
+				+ ", ubodytype=" + ubodytype + ", uresponse=" + uresponse + ", uquery=" + uquery + "]";
 	}
 	public int getId() {
 		return id;
@@ -93,6 +98,21 @@ public class User
 	public void setUbodytype(String ubodytype) {
 		this.ubodytype = ubodytype;
 	}
+	public String getUresponse() {
+		return uresponse;
+	}
+	public void setUresponse(String uresponse) {
+		this.uresponse = uresponse;
+	}
+	public String getUquery() {
+		return uquery;
+	}
+	public void setUquery(String uquery) {
+		this.uquery = uquery;
+	}
+	
+	
+	
 	
 	
 	

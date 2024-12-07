@@ -6,6 +6,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -109,13 +110,16 @@ public class UserController
 	}
 
 	
-	@GetMapping("userhome")
-	public ModelAndView userhome()
-	{
-		ModelAndView mv = new ModelAndView();
-		mv.setViewName("userhome");
-		return mv;
+	@GetMapping("/userhome")
+	public String userHomePage(Model model, HttpSession session) {
+	    User user = (User) session.getAttribute("user");
+	    if (user == null) {
+	        return "redirect:/userhome";
+	    }
+	    model.addAttribute("user", user);
+	    return "userhome";
 	}
+
 	
 	//12_girls_athletics
 	
@@ -587,11 +591,35 @@ public class UserController
     }
     
     
-    @GetMapping("meeting")
-    public ModelAndView meeting() {
+    @PostMapping("submitForm")
+    public ModelAndView submitForm(@RequestParam("userName") String userName, 
+                                   @RequestParam("userAge") int userAge,
+                                   @RequestParam("userEmail") String userEmail, 
+                                   @RequestParam("userQuery") String userQuery,
+                                   @RequestParam("ubodytype") String ubodytype) {  // New parameter for ubodytype
+        
+        User user = new User();
+        user.setUusername(userName);
+        user.setUage(String.valueOf(userAge)); 
+        user.setUemail(userEmail);
+        user.setUquery(userQuery);
+        user.setUbodytype(ubodytype);  // Set the body type here
+
+        userService.UserRegistration(user);
+
+        ModelAndView mv = new ModelAndView("userConfirmation");
+        mv.addObject("message", "Your query has been submitted successfully. You will receive a response shortly.");
+        return mv;
+    }
+
+    
+    @GetMapping("userform")
+    public ModelAndView userform() {
 	    ModelAndView mv = new ModelAndView();
-	    mv.setViewName("meeting");
+	    mv.setViewName("userform");
 	    return mv;
 	}
+    
+    
 	
 }
